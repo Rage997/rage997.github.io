@@ -12,7 +12,7 @@ a {
 }
 
 .navbar {
-    background: #0187f5;
+    background:rgba(1, 135, 245, 0.80);
     font-size: 22px;
 }
 
@@ -48,7 +48,7 @@ a {
 .description {
     border-radius: 2.5%;
     position: absolute;
-    top: 30%;
+    top: 25%;
     margin: auto;
     padding: 2em;
     background: rgba(244, 244, 244, 0.90);
@@ -78,7 +78,7 @@ a {
     position: relative;
 }
 
-.about img {
+.about .avatar {
     height: 100%;
     width: 100%;
     min-width : 200px;
@@ -153,3 +153,20 @@ a {
     color: #888;
     font-size: 16px;
 }
+
+.icon{
+    margin: 0% 5% 0% 5%;
+    /* border: solid 3px #000000; */
+    border-radius: 100%;
+}
+
+.icon img{
+    min-width: auto;
+    min-height: 40px;
+    max-width: 40px;
+    /* margin: 5%; */
+}
+/* 
+.icon twitter{
+    fill: #48A3B0
+} */
