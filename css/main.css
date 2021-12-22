@@ -12,30 +12,7 @@ a {
 }
 
 .navbar {
-    background:rgba(1, 135, 245, 0.80);
     font-size: 22px;
-}
-
-.nav-link,
-.navbar-brand {
-    color: #f4f4f4;
-    cursor: pointer;
-}
-
-.nav-link {
-    margin-right: 1em !important;
-}
-
-.nav-link:hover {
-    color: #f97300;
-}
-
-.navbar-collapse {
-    justify-content: flex-end;
-}
-
-.navbar-toggler {
-    background: #fff !important;
 }
 
 .header {
@@ -46,60 +23,16 @@ a {
 }
 
 .description {
-    border-radius: 2.5%;
-    position: absolute;
-    top: 25%;
-    margin: auto;
-    padding: 2em;
+    /* border-radius: 2.5%; */
+    /* position: absolute; */
+    /* top: 25%; */
+    /* margin: auto; */
+    /* padding: 2em; */
     background: rgba(244, 244, 244, 0.90);
-    width: 50%;
+    /* width: 50%; */
 
 }
 
-.description h1 {
-    color: #F97300;
-}
-
-.description p {
-    color: #666;
-    font-size: 20px;
-    line-height: 1.5;
-}
-
-.description button {
-    border: 1px solid #F97300;
-    background: #F97300;
-    color: #fff;
-}
-
-.about {
-    margin: 4em 0;
-    padding: 1em;
-    position: relative;
-}
-
-.about .avatar {
-    height: 100%;
-    width: 100%;
-    min-width : 200px;
-    max-width : 350px;
-    border-radius: 50%;
-    border-left: 50%
-}
-
-.about .desc {
-    padding: 2em;
-    border-left: 4px solid #10828C;
-}
-
-.about .desc {
-    color: #10828C;
-}
-
-.about .desc p {
-    line-height: 2;
-    color: rgb(0, 0, 0);
-}
 
 .blog {
     margin: 4em 0;
@@ -166,7 +99,3 @@ a {
     max-width: 40px;
     /* margin: 5%; */
 }
-/* 
-.icon twitter{
-    fill: #48A3B0
-} */

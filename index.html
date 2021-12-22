@@ -3,154 +3,192 @@
 <html>
 
 <head>
-	<title>Nicco's Website</title>
+	<title>Niccolo Zuppichini's Website</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="css/main.css" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
 	</script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
 		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
 	</script>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+
 	<script type="text/javascript" src='js/main.js'></script>
 </head>
 
 <body>
-	<!-- navbar -->
-	<nav class="navbar navbar-dark navbar-expand-lg fixed-top">
-		<a class="navbar-brand" href="#">Home</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse " id="navbarSupportedContent">
-			<ul class="navbar-nav mr-4">
-				<li class="nav-item">
-					<a class="nav-link" data-value="about" href="#">About</a> </li>
-				<li class="nav-item">
-					<a class="nav-link " data-value="portfolio" href="#">Projects</a>
-				</li>
-			</ul>
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container">
+			<div class="collapse navbar-collapse " id="navbarSupportedContent">
+				<ul class="navbar-nav mb-sm-0">
+					<li class="nav-item">
+						<a class="nav-link" data-value="about" href="#">About</a> </li>
+					<li class="nav-item">
+						<a class="nav-link " data-value="portfolio" href="#">Projects</a>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</nav>
 
-	<header class="header">
-		<div class="d-flex justify-content-center">
-			<div class="description p-5">
-				<h1 id='hello-there'> Hello there.</h1>
-				<div class="about">
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-4 col-md-4 col-sm-12 p-2">
-								<img class="img-fluid p-2 avatar" src="images/avatar.jpeg" class="img-fluid">
-								<!-- <span class="text-justify">Star wars memer.</span> -->
-							</div>
-							<div class="col-lg-8 col-md-8 col-sm-12 p-2 desc">
-								<h3>Niccol&ograve Zuppichini</h3>
-								<p>
-									I'm a Master Student in Computational Science at <a href="https://www.usi.ch/en"
-										class="link-dark" target="_blank">
-										Universit&agrave della Svizzera Italiana</a> (USI). I obtained my Bsc in
-									Informatics at USI, as well.
-									<br>
-									I'm interested in Computer Graphics, 3D printing and lately I've been interested in
-									Blockchain development. <br>
-								</p>
-							</div>
+	<header class="header row align-items-center">
+		<div class="py-5 col">
+			<div class="container-md shadow-lg p-3 mb-5 bg-body rounded bg-light" style="--bs-bg-opacity: .70;">
+				<div class="row mt-3 align-items-center">
+					<div class="col-flex text-center">
+						<h1 id='hello-there' class="text-center pt-3 pb-5"> Hello there.</h1>
+					</div>
+					<div class="row">
+						<div class="col-sm-4 col-12">
+							<img class="img-fluid rounded mb-5" src="images/avatar.jpeg" class="img-fluid">
+						</div>
+						<div class="col-sm-8 col-12">
+							<h3>Who am I?</h3>
+							<p>
+								I'm Niccol&ograve Zuppichini, a Master Student in Computational Science at <a
+									href="https://www.usi.ch/en" class="link-dark" target="_blank">
+									Universit&agrave della Svizzera Italiana</a> (USI) and a certified geek. I have a
+								background
+								in Informatics and currently I'm pursuig a Master Degree in Computational Science.
+								<br>
+								I'm interested in Computer Graphics, 3D printing and lately I've been interested in
+								Blockchain development. <br>
+								I'm a strong supporter of the Right to Repair. <br>
+							</p>
 						</div>
 					</div>
-				</div>
-			
-				<div class="d-flex justify-content-center">
-					<a href="https://www.reddit.com/user/rage997" target="_blank" class="icon"><img src="/images/reddit.svg"></a>
-					<a href="https://www.thingiverse.com/rage97/designs" target="_blank" class="icon"><img src="/images/thingverse.png"></a>
+
+					<!-- <div class="d-flex justify-content-center">
+					<a href="https://www.reddit.com/user/rage997" target="_blank" class="icon"><img
+							src="/images/reddit.svg"></a>
+					<a href="https://www.thingiverse.com/rage97/designs" target="_blank" class="icon"><img
+							src="/images/thingverse.png"></a>
 					<a href="https://github.com/Rage997" target="_blank" class="icon"><img src="/images/github.png"></a>
-					<a href="mailto: niccolo.zuppichini@usi.ch" class="icon"><img src="/images/mailbox.svg"></a>
+					<a href="mailto: niccolo.zuppichini@usi.ch" class="icon"><img src="/images/mailbox.svg"></a> -->
 
-					<!-- <a href="https://twitter.com" target="_blank" class="icon">
-						<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-align-center" viewBox="0 0 40 40">
-						<path d="M36.3,10.2c-1,1.3-2.1,2.5-3.4,3.5c0,0.2,0,0.4,0,1c0,1.7-0.2,3.6-0.9,5.3c-0.6,1.7-1.2,3.5-2.4,5.1 c-1.1,1.5-2.3,3.1-3.7,4.3c-1.4,1.2-3.3,2.3-5.3,3c-2.1,0.8-4.2,1.2-6.6,1.2c-3.6,0-7-1-10.2-3c0.4,0,1.1,0.1,1.5,0.1 c3.1,0,5.9-1,8.2-2.9c-1.4,0-2.7-0.4-3.8-1.3c-1.2-1-1.9-2-2.2-3.3c0.4,0.1,1,0.1,1.2,0.1c0.6,0,1.2-0.1,1.7-0.2 c-1.4-0.3-2.7-1.1-3.7-2.3s-1.4-2.6-1.4-4.2v-0.1c1,0.6,2,0.9,3,0.9c-1-0.6-1.5-1.3-2.2-2.4c-0.6-1-0.9-2.1-0.9-3.3s0.3-2.3,1-3.4 c1.5,2.1,3.6,3.6,6,4.9s4.9,2,7.6,2.1c-0.1-0.6-0.1-1.1-0.1-1.4c0-1.8,0.8-3.5,2-4.7c1.2-1.2,2.9-2,4.7-2c2,0,3.6,0.8,4.8,2.1 c1.4-0.3,2.9-0.9,4.2-1.5c-0.4,1.5-1.4,2.7-2.9,3.6C33.8,11.2,35.1,10.9,36.3,10.2L36.3,10.2z"/>
-					  </svg>
-					</a> -->
 
-				</div>	
-
+				</div>
 			</div>
+		</div>
 		</div>
 	</header>
 
-	<!-- Posts section -->
-	<!-- <div class="blog">
-		<div class="container">
-			<h1 class="text-center">Projects</h1>
-			<div class="row">
+	<div class="container pt-5">
+		<h1 class="text-center">Projects</h1>
+		<div class="row">
 
-				<div class="col-md-4 col-lg-4 col-sm-12">
-					<div class="card">
-						<div class="card-img">
-							<img src="images/posts/polit.jpg" class="img-fluid">
-						</div>
+			<div class="col-md-4 col-lg-4 col-sm-12">
+				<div class="card">
+					<div class="card-img">
+						<img src="images/projects/quadtree.png" class="img-fluid">
+					</div>
 
-						<div class="card-body">
-							<h4 class="card-title">Post Title</h4>
-							<p class="card-text">
+					<div class="card-body">
+						<h4 class="card-title">Quadtree image art</h4>
+						<p class="card-text">
 
-								proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-							</p>
-						</div>
-						<div class="card-footer">
-							<a href="" class="card-link">See on Github</a>
-						</div>
+							Approximate images using quadtree i.e. by recursively subdividing the image into four quadrants if some conditions are met. In this case, the split is done whether the image and its mean colour differ in some tolerance. This is not an efficient way of compressing images but the visual result is pleasant to the eye.
+
+						</p>
+					</div>
+					<div class="card-footer">
+						<a href="https://github.com/Rage997/ImageQuadApprox" target="_blank" class="card-link">See on Github</a>
 					</div>
 				</div>
+			</div>
 
-				<div class="col-md-4 col-lg-4 col-sm-12">
-					<div class="card">
-						<div class="card-img">
-							<img src="images/posts/images.jpg" class="img-fluid">
-						</div>
-
-						<div class="card-body">
-							<h4 class="card-title">Post Title</h4>
-							<p class="card-text">
-
-								proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-							</p>
-						</div>
-						<div class="card-footer">
-							<a href="" class="card-link">See on Github</a>
-						</div>
+			<div class="col-md-4 col-lg-4 col-sm-12">
+				<div class="card">
+					<div class="card-img">
+						<img src="images/projects/spectral_clustering.png" class="img-fluid">
 					</div>
-				</div>
-				<div class="col-md-4 col-lg-4 col-sm-12">
-					<div class="card">
-						<div class="card-img">
-							<img src="images/posts/imag2.jpg" class="img-fluid">
-						</div>
 
-						<div class="card-body">
-							<h4 class="card-title">Post Title</h4>
-							<p class="card-text">
-
-								proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-							</p>
-						</div>
-						<div class="card-footer">
-							<a href="" class="card-link">See on Github</a>
-						</div>
+					<div class="card-body">
+						<h4 class="card-title">Spectral Segmentation</h4>
+						<p class="card-text">
+							Implementation of the paper: Rong Liu and Hao Zhang, "Segmentation of 3D meshes through spectral clustering" in Blender.
+							In short, it performs the clusterering of a mesh vertices depending on the geodesic distance between
+							and concavity between faces. The algorithm, if provided with an appropiate number of clusters, is 
+							capable of clustering the important features of a mesh. In the picture the algorithm is applied on Suzanne (the Monkey) 
+							with a number of 3 clusters. Note how the two eyes and the body are in separated clusters.
+						</p>
+					</div>
+					<div class="card-footer">
+						<a href="https://github.com/Rage997/ImageQuadApprox" target="_blank" class="card-link">See on Github</a>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div> -->
+	</div>
 
 
+	
+
+	<div class="container pt-5">
+		<div class="text-center">
+			<h2>Get in touch</h2>
+		</div>
+
+		<form class="row needs-validation justify-content-center my-5">
+			<div class="col-lg-6">
+			  <form id='contact-form' role='form' onsubmit="send_mail()">
+				<div class="form-floating my-5">
+				  <input
+					type="name"
+					id="name"
+					class="form-control"
+				  />
+				  <label for="name" class="form-label">Name:</label>
+				</div>
+				<label for="subject" class="form=label">Subject</label>
+				<select name="subject" id="subject" class="form-select">
+				  <option value="Job Opportunity">Job Opportunity</option>
+				  <option value="Technical question" selected>Technical question</option>
+				  <option value="Other">Other</option>
+				</select>
+	
+				<div class="form-floating my-5">
+				  <textarea
+					name="query"
+					id="query"
+					style="height: 150px"
+					class="form-control"
+					placeholder="Write a message"
+				  ></textarea>
+	
+				  <label for="query">Write a message</label>
+				</div>
+	
+				<div class="text-center">
+				  <button type="submit" class="btn btn-primary" id="mail_btn">Send!</button>
+				</div>
+			  </form>
+			</div>
+		</form>
+	
+	</div>
+	
+
+	<footer class="footer mt-auto py-3 bg-dark">
+		<!-- <a href="#" class='scroll-top btn-hover'></a> -->
+
+		<div class="d-flex justify-content-center">
+			<span class="text-muted">Niccol&ograve Zuppichini </span>		
+			<a href="https://www.reddit.com/user/rage997" target="_blank" class="icon"><img
+							src="/images/reddit.svg"></a>
+					<a href="https://www.thingiverse.com/rage97/designs" target="_blank" class="icon"><img
+							src="/images/thingverse.png"></a>
+					<a href="https://github.com/Rage997" target="_blank" class="icon"><img src="/images/github.png"></a>
+					<a href="mailto: niccolo.zuppichini@usi.ch" class="icon"><img src="/images/mailbox.svg"></a>
+		</div>
+	</footer>
 </body>
 
 </html>
