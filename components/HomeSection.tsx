@@ -12,8 +12,8 @@ export default function HomeSection({ isActive }: HomeSectionProps) {
           <Image
             src="/images/avatar.jpeg"
             alt="Niccolò Zuppichini"
-            width={144}
-            height={144}
+            fill
+            style={{ objectFit: 'cover' }}
             priority
           />
         </span>

@@ -381,8 +381,11 @@ hr:before {
 
 #image01 .frame {
     width: 9rem;
+    height: 9rem;
     border-radius: 100%;
     transition: none;
+    position: relative;
+    overflow: hidden;
 }
 
 #image01 .frame img {
