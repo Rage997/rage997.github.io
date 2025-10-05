@@ -6,6 +6,7 @@ My personal website/portfolio/blog in modern Next.js with TypeScript.
 
 - **Single-page application** with smooth section navigation
 - **Blog section** with article listing and easy maintenance using markdown
+- **Projects section** with year-grouped listings and easy maintenance using markdown
 
 ## Technology Stack
 
@@ -45,10 +46,15 @@ npm run dev
 │   ├── ProjectsSection.tsx # Projects section component
 │   ├── ThesisSection.tsx   # Thesis section component
 │   └── BlogSection.tsx     # Blog section with articles
+├── content/
+│   ├── blog/               # Blog posts in Markdown
+│   └── projects/           # Projects in Markdown
 ├── public/
-│   └── images/             # Optimized images
-└── lib/
-    └── navigation.ts       # Navigation utilities (future)
+│   ├── images/             # Optimized images
+│   ├── articles.json       # Generated blog data
+│   └── projects.json       # Generated projects data
+└── scripts/
+    └── generateArticles.js # Content generation script
 ```
 
 ## Blog Features
@@ -58,6 +64,51 @@ The blog section includes:
 - **Individual article views** with full content
 - **Hash-based navigation** (#blog, #blog/article-slug)
 - **Responsive article cards** matching the design system
+
+### Adding Blog Posts
+
+To add a new blog post:
+
+1. Create a new Markdown file in `content/blog/` (e.g., `my-article.md`)
+2. Use the following frontmatter format:
+
+```yaml
+---
+title: "Your Article Title"
+date: "2024-12-15"
+excerpt: "A brief description of the article"
+tags: ["tag1", "tag2"]
+---
+
+Your article content in Markdown...
+```
+
+3. Run `npm run build` to generate the updated articles list
+4. Commit and push the changes
+
+The articles are automatically sorted by date (newest first) and converted from Markdown to HTML during build.
+
+### Adding Projects
+
+To add a new project:
+
+1. Create a new Markdown file in `content/projects/` (e.g., `my-project.md`)
+2. Use the following frontmatter format:
+
+```yaml
+---
+title: "Your Project Title"
+year: 2024
+link: "https://github.com/username/repo"
+---
+
+Your project description in Markdown...
+```
+
+3. Run `npm run build` to generate the updated projects list
+4. Commit and push the changes
+
+The projects are automatically sorted by year (newest first) and grouped by year on the page.
 
 ## Development
 

@@ -1,0 +1,51 @@
+[
+  {
+    "slug": "blender-nft-generator",
+    "title": "Blender 3D NFT generator",
+    "year": 2022,
+    "link": "https://github.com/Rage997/NFT_Blender",
+    "content": "\nI have been working, during my little spare time, on a Blender's python add-on to generate 3D NFT art procedurally. The add-on gained some popularity inside Blender's forum and there are already multiple users using it, even if it is still in an early development stage and many features are lacking."
+  },
+  {
+    "slug": "var-model-crypto",
+    "title": "A study on the crypto market using an Autoregressive Model",
+    "year": 2022,
+    "link": "https://github.com/Rage997/VarModelCrypto",
+    "content": "\nI fitted an Autoregressive Model (VAR) on a subset of the crypto market. My study focused on cryptocurrencies casual relationships and their casual direction. Furthermore, I was interested in estimating the \"big players\" that dictate the directions of the market."
+  },
+  {
+    "slug": "images-as-mesh",
+    "title": "Image as Mesh",
+    "year": 2021,
+    "link": "https://github.com/Rage997/ImagesAsMesh",
+    "content": "\nA Blender addon to import images as meshes. Inspired by the famous addon: ImagesAsPlanes. The addon will create a 3D object given an image. Results quality depend on the resolution of the image."
+  },
+  {
+    "slug": "quadtree-image-art",
+    "title": "Quadtree image art",
+    "year": 2021,
+    "link": "https://github.com/Rage997/ImageQuadApprox",
+    "content": "\nApproximate images using quadtree i.e. by recursively subdividing the image into four quadrants if some conditions are met. In this case, the split is done whether the image and its mean colour differ in some tolerance. This is not an efficient way of compressing images but the visual result is pleasant to the eye."
+  },
+  {
+    "slug": "spectral-clustering-mesh-segmentation",
+    "title": "3D Spectral segmentation",
+    "year": 2021,
+    "link": "https://github.com/Rage997/Spectral-Clustering-mesh-segmentation",
+    "content": "\nImplementation of the paper *\"Rong Liu and Hao Zhang, \"Segmentation of 3D meshes through spectral clustering\"* in Blender. In short, it performs the clustering of a mesh vertices depending on the geodesic distance between and concavity between faces. The algorithm, if provided with an appropriate number of clusters, is capable of clustering the important features of a mesh. In the picture the algorithm is applied on Suzanne (the Monkey) with a number of 3 clusters. Note how the two eyes and the body are in separated clusters."
+  },
+  {
+    "slug": "structured-light-3d-scanner",
+    "title": "Structured light 3D scanner",
+    "year": 2020,
+    "link": "https://github.com/Rage997/Structured_Light_3DScanner",
+    "content": "\nImplementation of *Build Your Own 3D Scanner: Optical Triangulation for Beginners* presented in SIGGRAPH 2009 and SIGGRAPH Asia 2009 Courses (http://mesh.brown.edu/byo3d/)."
+  },
+  {
+    "slug": "geometry-instancing",
+    "title": "Geometry Instancing",
+    "year": 2019,
+    "link": "https://github.com/Rage997/aFrame-GeometryInsancing-Component",
+    "content": "\nImplementation of geometry instancing using A-Frame, three.js and webGL."
+  }
+]
