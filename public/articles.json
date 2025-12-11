@@ -1,5 +1,18 @@
 [
   {
+    "slug": "how-to-ddos-on-a-local-network",
+    "title": "DDOS Internet Access on Local Networks: A Practical Guide",
+    "date": "2025-10-27",
+    "excerpt": "Learn how to block specific devices from accessing the internet on your local network without router access.",
+    "tags": [
+      "Networking",
+      "Security",
+      "Wi-Fi",
+      "DDoS"
+    ],
+    "content": "\nA while ago a friend of mine had serious problems with his flatmates torrenting\non their local shared wifi. He was living in a university dorm and the wifi was\nmanaged by the owners so he had no option of setting up his own. He asked me how\nhe could take down other devices on the network so that his internet would work\nbetter and, while I do not advice the legality of it, this is how you can do it:\n\n## How to Set It Up\n\nWe are going to use [MHDDoS](https://github.com/MatrixTM/MHDDoS) to perform a\nDDOS attack on the port 53 (DNS) of a target device. Before doing anything however\nwe need to find the local address of the target device(s).\n\n## How to Scan for Devices on Your Network\n\nBefore you can target specific devices, you'll need to identify them on your local network. Here's how to use nmap to scan for devices:\n\n```nmap -sn 192.168.1.0/24```\n\nThis command will scan the entire subnet and identify all active devices. You can also use:\n\n```nmap -sP 192.168.1.0/24```\n\nTo get more detailed information about each device, including their MAC addresses and open ports. Once you've identified the target device, you can proceed with the DDoS attack.\n\n### Using MHDDoS for Network Disruption\n\nFirst, clone the repository:\n```git clone https://github.com/MatrixTM/MHDDoS```\n\nI recommend using the provided Docker image:\n```docker compose run -it --entrypoint /bin/bash mhddos```\n\nThen you can target someone on your network (i.e. `192.168.1.192:53`) by running this command inside the Docker container:\n```python start.py udp 192.168.1.192:53 32 60```\n\nThis command will target `192.168.1.192` on port `53` (DNS) using UDP protocol with 32 threads for 60 seconds.\n\n### Understanding the Attack Method\n\nThis approach works by flooding the target device's DNS port with UDP traffic, which can cause:\n- Network congestion\n- Service disruption\n- Temporary loss of connectivity\n- Resource exhaustion on the target device\n\nThe attack is designed to overwhelm the target's ability to respond to legitimate network requests, effectively making it appear offline to other network devices.\n\nAfter running the attack, the target device will experience:\n- Reduced network responsiveness\n- Loss of internet connectivity\n- Potential service disruption\n- Note that other devices on the same network might experience network instability\n\nThis attack is particularly effective because it targets a critical network service (DNS).\n\nThat's it! Now you learned how you can effectively disrupt network access for specific devices when you don't have router access and why you shouldn't give\nyour wifi credentials to anyone :) (seriously!)\n\nRemember: This knowledge should only be used for educational purposes and with proper authorization on networks you own or have explicit permission to test."
+  },
+  {
     "slug": "repurpose-old-router",
     "title": "Extending Wi-Fi Coverage with an Old Router",
     "date": "2025-10-27",

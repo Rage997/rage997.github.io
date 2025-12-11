@@ -1,7 +1,9 @@
+---
 title: "DDOS Internet Access on Local Networks: A Practical Guide"
 date: "2025-10-27"
 excerpt: "Learn how to block specific devices from accessing the internet on your local network without router access."
 tags: ["Networking", "Security", "Wi-Fi", "DDoS"]
+---
 
 A while ago a friend of mine had serious problems with his flatmates torrenting
 on their local shared wifi. He was living in a university dorm and the wifi was
