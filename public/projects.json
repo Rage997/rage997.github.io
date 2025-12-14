@@ -28,11 +28,39 @@
     "content": "\nA Blender addon to import images as meshes. Inspired by the famous addon: ImagesAsPlanes. The addon will create a 3D object given an image. Results quality depend on the resolution of the image."
   },
   {
+    "slug": "prey-predator copy",
+    "title": "Lennard-Jones Potential's Molecular Dynamcis Simulation",
+    "year": 2021,
+    "link": "https://github.com/Rage997/Molecular-Dynamics/tree/main",
+    "content": "\nA Molecular Dynamcis simulation using Lennard-Jones potential implemented in python."
+  },
+  {
+    "slug": "prey-predator",
+    "title": "Image as Mesh",
+    "year": 2021,
+    "link": "https://github.com/Rage997/PreyPredator",
+    "content": "\nAgent model simulation of a prey predatol system."
+  },
+  {
     "slug": "quadtree-image-art",
     "title": "Quadtree image art",
     "year": 2021,
     "link": "https://github.com/Rage997/ImageQuadApprox",
     "content": "\nApproximate images using quadtree i.e. by recursively subdividing the image into four quadrants if some conditions are met. In this case, the split is done whether the image and its mean colour differ in some tolerance. This is not an efficient way of compressing images but the visual result is pleasant to the eye."
+  },
+  {
+    "slug": "schelling-segregation",
+    "title": "Schelling's Model of Segregation",
+    "year": 2021,
+    "link": "https://github.com/Rage997/schelling-model",
+    "content": "\nPython implementation of Schelling's model of segregation: an agent-based particle method. Each agent (in this implementation only two but potentially any number) will try to relocate to an empty cell to satisfy his desire to have neighbourhoods of his kind, if not already satisfied in his current position."
+  },
+  {
+    "slug": "smart-door",
+    "title": "Smart Door",
+    "year": 2021,
+    "link": "https://github.com/Rage997/SmartDoor",
+    "content": "\nAn esp8266 powered smart door."
   },
   {
     "slug": "spectral-clustering-mesh-segmentation",
@@ -49,10 +77,31 @@
     "content": "\nImplementation of *Build Your Own 3D Scanner: Optical Triangulation for Beginners* presented in SIGGRAPH 2009 and SIGGRAPH Asia 2009 Courses (http://mesh.brown.edu/byo3d/)."
   },
   {
+    "slug": "blender-deepblend",
+    "title": "DeepBlend: run neural networks on blender's node system",
+    "year": 2019,
+    "link": "https://github.com/Rage997/DeepBlend",
+    "content": "\nA blender's add-on to allow running neural networks for image generations within Blender's material node system."
+  },
+  {
     "slug": "geometry-instancing",
     "title": "Geometry Instancing",
     "year": 2019,
     "link": "https://github.com/Rage997/aFrame-GeometryInsancing-Component",
     "content": "\nImplementation of geometry instancing using A-Frame, three.js and webGL."
+  },
+  {
+    "slug": "poisson-fem",
+    "title": "Finite Element Method: Poisson Equation",
+    "year": 2019,
+    "link": "https://github.com/Rage997/Poisson_FEM",
+    "content": "\nImplementation of the finite element method applied on the poisson equation."
+  },
+  {
+    "slug": "webgl-rendering-engine",
+    "title": "A WebGL Rendering Engine",
+    "year": 2019,
+    "link": "https://github.com/Rage997/RenderingEngine_webGL_Example",
+    "content": "\nAn implementation of a basic rendering engine using webGL, as an exercise."
   }
 ]
