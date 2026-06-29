@@ -1,5 +1,5 @@
 ---
-title: "Image as Mesh"
+title: "Prey Predator Model"
 year: 2021
 link: "https://github.com/Rage997/PreyPredator"
 ---
