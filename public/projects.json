@@ -1,10 +1,24 @@
 [
   {
+    "slug": "DICOM-viewer",
+    "title": "3D DICOM Medical Viewer",
+    "year": 2026,
+    "link": "https://github.com/Rage997/3d-dicom-visualiser",
+    "content": "                                                                                                \n                                                                                                      \n   A browser-based medical imaging viewer for DICOM files, featuring real-time 2D multi-planar        \n reconstruction and GPU-accelerated 3D volume rendering — all processed client-side with no server    \n uploads.    "
+  },
+  {
     "slug": "lemonate",
     "title": "Lemonate",
     "year": 2026,
     "link": "https://lemonate.io/",
     "content": "\nContribute to the core development of Lemonate’s interactive 3D platform, enabling real-time rendering and deployment of complex\nbrowser-based applications."
+  },
+  {
+    "slug": "auto-subs",
+    "title": "AutoSubs: whisper powered automatic subtitle generator for movies",
+    "year": 2025,
+    "link": "https://github.com/Rage997/AutoSubs",
+    "content": "\nA cross-platform (mac, linux, windows) commandline tool to automatically generate subtitles (.srt) for movies (or any media, in general)."
   },
   {
     "slug": "blender-nft-generator",
@@ -36,7 +50,7 @@
   },
   {
     "slug": "prey-predator",
-    "title": "Image as Mesh",
+    "title": "Prey Predator Model",
     "year": 2021,
     "link": "https://github.com/Rage997/PreyPredator",
     "content": "\nAgent model simulation of a prey predatol system."
@@ -71,7 +85,7 @@
   },
   {
     "slug": "blender-voxelise",
-    "title": "Blender Voxelise AddOn",
+    "title": "Blender Voxelise Add-On",
     "year": 2020,
     "link": "https://github.com/Rage997/Voxelise_blender/tree/master",
     "content": "\nA Blender's addon to voxelise 3D objects."
