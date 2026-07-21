@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import IconSprite from '@/components/IconSprite'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -26,6 +27,7 @@ export default function RootLayout({
           rel="stylesheet" type="text/css" />
       </head>
       <body className={inter.className}>
+        <IconSprite />
         {children}
       </body>
     </html>

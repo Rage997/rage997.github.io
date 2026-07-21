@@ -927,6 +927,7 @@ p code {
 .blog-content {
     line-height: 1.8;
     color: #474747;
+    text-align: left;
 }
 
 .blog-content h1, .blog-content h2, .blog-content h3 {
@@ -947,131 +948,21 @@ p code {
 }
 
 .blog-content pre {
-    background-color: rgba(144, 144, 144, 0.1);
+    background-color: #fafafa;
+    border: 1px solid #eaeaea;
     padding: 1rem;
     border-radius: 0.25rem;
     overflow-x: auto;
     margin: 1.5rem 0;
-}
-
-.blog-content pre code {
-    background-color: transparent;
-    padding: 0;
-}
-
-.back-to-blog {
-    display: inline-block;
-    margin-top: 2rem;
-    color: #309EDB;
-    text-decoration: none;
-    font-weight: 300;
-}
-
-.back-to-blog:hover {
-    text-decoration: underline;
-}
-/* Blog section styles */
-#text25 {
-    text-transform: uppercase;
-    color: #474747;
-    font-family: 'Source Sans Pro', sans-serif;
-    letter-spacing: 0.4rem;
-    width: calc(100% + 0.4rem);
-    font-size: 1.125em;
-    line-height: 1.5;
-    font-weight: 400;
-}
-
-/* Article cards */
-.blog-card {
-    margin-bottom: var(--spacing);
-    padding: var(--padding-vertical) var(--padding-horizontal);
-    border: 1px solid #CCCCCC;
-    border-radius: 0.25em;
-}
-
-.blog-card h4 {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.2em;
-    font-weight: 400;
-}
-
-.blog-card h4 a {
-    text-decoration: none;
-    color: #474747;
-    transition: color 0.25s ease;
-}
-
-.blog-card h4 a:hover {
-    color: #309EDB;
-}
-
-.blog-date {
-    color: #666;
     font-size: 0.9em;
-    margin-bottom: 0.5rem;
-}
-
-.blog-excerpt {
-    color: #474747;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-}
-
-.blog-tags {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-}
-
-.tag {
-    background-color: rgba(48, 157, 219, 0.1);
-    color: #309EDB;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    font-size: 0.8em;
-    font-weight: 300;
-}
-
-/* Individual article view */
-.blog-article-full {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.blog-content {
-    line-height: 1.8;
-    color: #474747;
-}
-
-.blog-content h1, .blog-content h2, .blog-content h3 {
-    color: #474747;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-}
-
-.blog-content p {
-    margin-bottom: 1.5rem;
-}
-
-.blog-content code {
-    background-color: rgba(144, 144, 144, 0.25);
-    padding: 0.25rem;
-    border-radius: 0.25rem;
-    font-family: 'Lucida Console', 'Courier New', monospace;
-}
-
-.blog-content pre {
-    background-color: rgba(144, 144, 144, 0.1);
-    padding: 1rem;
-    border-radius: 0.25rem;
-    overflow-x: auto;
-    margin: 1.5rem 0;
+    line-height: 1.5;
 }
 
 .blog-content pre code {
     background-color: transparent;
     padding: 0;
+    margin: 0;
+    font-size: inherit;
 }
 
 .back-to-blog {
@@ -1093,4 +984,67 @@ section.inactive {
 
 section.active {
     display: block !important;
+}
+
+/* Syntax highlighting (rehype-highlight, One Light palette) */
+.blog-content .hljs {
+    color: #383a42;
+    background: transparent;
+}
+
+.blog-content .hljs-comment,
+.blog-content .hljs-quote {
+    color: #a0a1a7;
+    font-style: italic;
+}
+
+.blog-content .hljs-keyword,
+.blog-content .hljs-selector-tag,
+.blog-content .hljs-literal {
+    color: #a626a4;
+}
+
+.blog-content .hljs-string,
+.blog-content .hljs-addition,
+.blog-content .hljs-attribute {
+    color: #50a14f;
+}
+
+.blog-content .hljs-number,
+.blog-content .hljs-symbol,
+.blog-content .hljs-bullet {
+    color: #986801;
+}
+
+.blog-content .hljs-title,
+.blog-content .hljs-section,
+.blog-content .hljs-name,
+.blog-content .hljs-title.function_,
+.blog-content .hljs-meta {
+    color: #4078f2;
+}
+
+.blog-content .hljs-built_in,
+.blog-content .hljs-type,
+.blog-content .hljs-title.class_,
+.blog-content .hljs-class .hljs-title {
+    color: #c18401;
+}
+
+.blog-content .hljs-attr,
+.blog-content .hljs-variable,
+.blog-content .hljs-template-variable,
+.blog-content .hljs-selector-attr,
+.blog-content .hljs-selector-pseudo,
+.blog-content .hljs-tag,
+.blog-content .hljs-deletion {
+    color: #e45649;
+}
+
+.blog-content .hljs-emphasis {
+    font-style: italic;
+}
+
+.blog-content .hljs-strong {
+    font-weight: 700;
 }

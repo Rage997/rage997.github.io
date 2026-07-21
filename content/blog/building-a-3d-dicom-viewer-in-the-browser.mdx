@@ -1,0 +1,205 @@
+---
+title: "Building a 3D DICOM Viewer That Runs in Your Browser"
+date: "2026-07-21"
+excerpt: "How I turned a pile of medical scan files into an interactive 3D volume you can spin around, entirely client-side with no server in sight."
+tags: ["WebGL", "Medical Imaging", "Three.js", "DICOM", "GLSL"]
+---
+
+Hey there!
+
+A while back someone in my family came home from the hospital with one of those CDs full of scan data. You know the ones: a folder of cryptic `.dcm` files and a bundled viewer that only runs on an ancient version of Windows. I plugged it in, the viewer refused to launch, and I was left staring at hundreds of files I couldn't open. That annoyed me enough to ask a simple question: why can't I just drag these onto a web page and look at them?
+
+Turns out you can. There are already a few great [DICOM Viewers](https://www.cancerimagingarchive.net/viewer/) but I wanted to teach myself how they work under the hood, so I built a browser-based DICOM viewer that renders those scans in both 2D slices and a full interactive 3D volume, without uploading a single byte anywhere, everything runs in local respecting the user's privacy.
+
+---
+
+## How It Works
+
+The whole thing is a pipeline: DICOM files go in one end, a 3D volume comes out the other. Here's how it works step by step:
+
+1. **Parse the files (off the main thread)**
+   When you drop a folder onto the page, I spin up four Web Workers that parse files in parallel using a library called `dcmjs`. Each file carries both metadata (patient info, dimensions, pixel spacing) and the raw pixel data. Doing this on background threads means the UI never freezes, even when you throw 500 files at it. On a decent machine it chews through about 100 files a second.
+
+2. **Figure out the 3D order**
+   This was the trickiest part. DICOM hands you a *pile* of 2D slices with no guarantee they're in order. Each slice does carry its real-world position and orientation (tags literally named "Image Position Patient" and "Image Orientation Patient"), so I use a bit of vector math, dot products against the slice normal, to work out how far along the stack each slice sits and sort them into their true anatomical order.
+
+3. **Pack it into one big block of memory**
+   The sorted slices get flattened into a single array laid out so that `x` changes fastest, then `y`, then `z`. This isn't arbitrary, it's exactly the shape the GPU wants, so there's no reshuffling later. A typical brain MRI ends up around 256x256x384 voxels, roughly 25 MB.
+
+4. **Hand the whole volume to the GPU**
+   I upload that block as a single 3D texture (WebGL2's `Data3DTexture`) in one shot. It's stored as 16-bit floats because medical data needs the precision, and 8 bits just won't cut it for anything you'd want to look at closely.
+
+5. **Render it every frame**
+   From here it's pure GPU. The volume lives in video memory, and each frame the graphics card reconstructs the image using a technique called *ray marching*.
+
+---
+
+## Ray Marching: How 3D Volume Rendering Actually Works
+
+Okay, so you have a 3D texture full of density values. How do you turn that into something you can see?
+
+The naive approach would be to extract isosurfaces (like marching cubes) and render polygons. But that's slow, you lose information between surfaces. Instead, I use **ray marching**. In simple terms, the technique works by casting a ray from the camera through every pixel and sampling the volume along that ray. This way, you get as a result a 3D volume.
+
+### The Setup
+
+I render a simple cube mesh scaled to the volume's aspect ratio. The camera sits outside looking in. Each pixel on your screen maps to a point on the cube's surface, and that's where the ray starts.
+
+Here's the vertex shader (it's dead simple):
+
+```glsl
+// Just pass the position through
+varying vec3 vPosition;
+
+void main() {
+    vPosition = position;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+}
+```
+
+The real work happens in the fragment shader. For every pixel:
+
+1. Calculate the ray direction from the camera to the fragment position
+2. March along that ray in small steps
+3. At each step, sample the 3D texture
+4. Map the density value to a color and opacity (the "transfer function")
+5. Blend it with what we've accumulated so far
+6. Stop when we're mostly opaque or hit the step limit
+
+### The Ray Marching Loop
+
+Here's the pseudocode (simplified from the actual GLSL [volume.fag.gsls](https://github.com/Rage997/DICOM-Viewer/blob/main/src/features/viewer/volume/shaders/volume.frag.glsl)):
+
+```glsl
+void main() {
+    vec3 rayOrigin = cameraPosition;
+    vec3 rayDir = normalize(vPosition - cameraPosition);
+    
+    vec4 accumulated = vec4(0.0); // Start transparent
+    float t = 0.0; // Distance along ray
+    
+    for (int i = 0; i < maxSteps; i++) {
+        vec3 samplePos = rayOrigin + rayDir * t;
+        
+        // Sample the volume (trilinear interpolation is free in hardware)
+        float density = texture(volumeTexture, samplePos).r;
+        
+        // Map density to opacity
+        float alpha = transferFunction(density);
+        
+        // Calculate color with shading
+        vec3 color = applyShading(density, samplePos, rayDir);
+        
+        // Front-to-back compositing
+        float weight = alpha * (1.0 - accumulated.a);
+        accumulated.rgb += color * weight;
+        accumulated.a += weight;
+        
+        // Early exit if we're opaque enough
+        if (accumulated.a > 0.95) break;
+        
+        t += stepSize; // Move along the ray
+    }
+    
+    gl_FragColor = accumulated;
+}
+```
+
+The `stepSize` parameter controls quality vs speed. Smaller steps = more samples = better quality but slower. I expose this as a quality setting: 0.005 for high quality (great for screenshots), 0.02 for low quality (60fps on a laptop).
+
+### Why Front-to-Back Compositing?
+
+You might wonder why we accumulate `(1.0 - accumulated.a)` instead of just adding everything up. That's the "under" operator from Porter-Duff compositing — it makes sure stuff in front occludes stuff behind. If you hit a skull early, you don't want brain tissue behind it to show through. The math works out so that each new sample contributes proportionally to how transparent everything before it was.
+
+---
+
+## The Transfer Function: Turning Density Into Opacity
+
+This is the secret sauce that makes structures visible. A transfer function maps normalized density (0 to 1) to opacity (also 0 to 1).
+
+The first approach was using a linear transfer function, just `opacity = density * globalOpacity`, but it looks terrible. Everything has the same transparency, so you get this foggy mess where nothing stands out.
+
+Instead, I used a **piecewise function** tuned for brain MRI:
+
+```glsl
+float transferFunction(float density) {
+    float n = applyWindowLevel(density); // Normalize to 0-1
+    
+    float alpha;
+    if (n < 0.1) {
+        // Background/air: nearly transparent
+        alpha = n * 0.5; // 0% to 5%
+    } else if (n < 0.3) {
+        // CSF (cerebrospinal fluid): gradually visible
+        alpha = 0.05 + (n - 0.1) * 1.5; // 5% to 35%
+    } else if (n < 0.7) {
+        // Brain tissue: main structures
+        alpha = 0.35 + (n - 0.3) * 1.2; // 35% to 83%
+    } else {
+        // Bone/white matter: most opaque
+        alpha = 0.83 + (n - 0.7) * 0.5; // 83% to 98%
+    }
+    
+    return alpha * opacity; // opacity is the user slider
+}
+```
+
+The segment boundaries (0.1, 0.3, 0.7) came from experimenting with actual brain scans. The idea is:
+- Air and background should almost disappear (you don't care about it)
+- CSF is low signal, needs to be faint but visible for context
+- Brain parenchyma is what you're here to see, so it gets good contrast
+- Skull and high-density tissue should pop
+
+This is specific to brain MRI. For CT you'd tune it differently, Hounsfield units have known ranges for air, soft tissue, bone. For other MRI sequences (T2, FLAIR) you'd adjust the breakpoints, but this is currently not exposed to the user.
+
+---
+
+## Shading: Making It Look 3D
+
+Without shading, the volume looks flat — just a cloud of colored fog. To get depth perception, I calculate gradients and do a basic Phong lighting.
+
+The **gradient** at each voxel is the rate of change in density, and it points perpendicular to "surfaces" (really, density boundaries). I compute it using central differences:
+
+```glsl
+vec3 calculateGradient(vec3 pos) {
+    float delta = 1.0 / 256.0; // One voxel in texture space
+    
+    float dx = texture(volumeTexture, pos + vec3(delta, 0, 0)).r
+             - texture(volumeTexture, pos - vec3(delta, 0, 0)).r;
+    float dy = texture(volumeTexture, pos + vec3(0, delta, 0)).r
+             - texture(volumeTexture, pos - vec3(0, -delta, 0)).r;
+    float dz = texture(volumeTexture, pos + vec3(0, 0, delta)).r
+             - texture(volumeTexture, pos - vec3(0, 0, -delta)).r;
+    
+    return normalize(vec3(dx, dy, dz));
+}
+```
+
+This gradient is effectively the surface normal. Then I do standard Phong shading:
+
+```glsl
+vec3 applyShading(vec3 baseColor, vec3 normal, vec3 rayDir) {
+    vec3 lightDir = normalize(vec3(0.5, 0.8, 0.3)); // Light from upper-right
+    
+    // Diffuse shading
+    float diffuse = max(dot(-normal, lightDir), 0.0);
+    diffuse = diffuse * 0.6 + 0.4; // 60% diffuse, 40% ambient
+    
+    // Specular highlight (shininess = 16)
+    vec3 halfVec = normalize(lightDir - rayDir);
+    float specular = pow(max(dot(-normal, halfVec), 0.0), 16.0) * 0.3;
+    
+    return baseColor * diffuse + vec3(specular);
+}
+```
+
+The `0.6 + 0.4` trick means even surfaces facing away from the light still have 40% brightness (ambient light). Otherwise, the back side of the brain would be pitch black, which looks weird.
+
+Specular highlights (the `pow(dot, 16)` thing) add shininess. The exponent 16 controls how sharp the highlight is. Brain tissue (or any tissue in general) isn't shiny like metal, so I keep the specular contribution low (`* 0.3`).
+
+---
+
+## Results
+
+It works :) That original hospital CD that started all this? It opens in about three seconds now, in the same browser I'm writing this post in. Neat!
+
+You can try it live [here](https://rage997.github.io/DICOM-Viewer/).

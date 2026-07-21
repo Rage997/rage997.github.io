@@ -2,7 +2,7 @@
 const isProd = process.env.NODE_ENV === 'production';
 
 const nextConfig = {
-  output: 'export', // Generate static HTML and assets for GitHub Pages
+  output: isProd ? 'export' : undefined, // Static export for GitHub Pages (production build only; dev renders on-demand)
   trailingSlash: true,
   basePath: isProd ? '' : '', // For user site (rage997.github.io), no basePath needed
   assetPrefix: isProd ? '' : '',

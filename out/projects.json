@@ -3,7 +3,7 @@
     "slug": "DICOM-viewer",
     "title": "3D DICOM Medical Viewer",
     "year": 2026,
-    "link": "https://github.com/Rage997/3d-dicom-visualiser",
+    "link": "https://github.com/Rage997/DICOM-viewer",
     "content": "                                                                                                \n                                                                                                      \n   A browser-based medical imaging viewer for DICOM files, featuring real-time 2D multi-planar        \n reconstruction and GPU-accelerated 3D volume rendering — all processed client-side with no server    \n uploads.    "
   },
   {

@@ -1,7 +1,7 @@
 ---
    title: "3D DICOM Medical Viewer"                                                                   
    year: 2026                                                                                         
-   link: "https://github.com/Rage997/3d-dicom-visualiser"                                             
+   link: "https://github.com/Rage997/DICOM-viewer"                                             
 ---                                                                                                
                                                                                                       
    A browser-based medical imaging viewer for DICOM files, featuring real-time 2D multi-planar        

@@ -1,8 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
 
 interface ProjectsSectionProps {
   isActive: boolean

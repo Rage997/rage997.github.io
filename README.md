@@ -35,42 +35,44 @@ npm run dev
 ```
 /
 ├── app/
-│   ├── layout.tsx          # Root layout with fonts and meta tags
-│   ├── page.tsx            # Main page with navigation logic
-│   └── globals.css         # Global styles (converted from main.css)
+│   ├── layout.tsx              # Root layout with fonts and meta tags
+│   ├── page.tsx                # Server component: reads post metadata, renders HomeClient
+│   ├── blog/[slug]/page.tsx    # Static per-post page (MDX + syntax highlighting + SEO)
+│   └── globals.css             # Global styles
 ├── components/
-│   ├── Header.tsx          # Navigation header
-│   ├── Footer.tsx          # Social links footer
-│   ├── HomeSection.tsx     # Home section component
-│   ├── AboutSection.tsx    # About section component
-│   ├── ProjectsSection.tsx # Projects section component
-│   ├── ThesisSection.tsx   # Thesis section component
-│   └── BlogSection.tsx     # Blog section with articles
+│   ├── HomeClient.tsx          # Client SPA shell (section navigation, intro animation)
+│   ├── Header.tsx              # Navigation header
+│   ├── Footer.tsx              # Social links footer
+│   ├── BlogSection.tsx         # Blog list (links to /blog/<slug>/)
+│   ├── ProjectsSection.tsx     # Projects section component
+│   └── ...                     # Home / About / Thesis sections
+├── lib/
+│   ├── posts.ts                # Reads + validates blog posts (single source of truth)
+│   └── date.ts                 # Shared date formatting
 ├── content/
-│   ├── blog/               # Blog posts in Markdown
-│   └── projects/           # Projects in Markdown
+│   ├── blog/                   # Blog posts in Markdown / MDX (.md / .mdx)
+│   └── projects/               # Projects in Markdown
 ├── public/
-│   ├── images/             # Optimized images
-│   ├── articles.json       # Generated blog data
-│   └── projects.json       # Generated projects data
+│   ├── images/                 # Images
+│   └── projects.json           # Generated projects data
 └── scripts/
-    └── generateArticles.js # Content generation script
+    └── generateProjects.js     # Projects content generation script
 ```
 
 ## Blog Features
 
 The blog section includes:
 - **Article listing** with excerpts, dates, and tags
-- **Individual article views** with full content
-- **Hash-based navigation** (#blog, #blog/article-slug)
-- **Responsive article cards** matching the design system
+- **Individual static pages** at `/blog/<slug>/`, each with its own `<title>` and OpenGraph metadata for sharing and SEO
+- **Markdown & MDX** with GitHub-flavored tables and syntax-highlighted code blocks (via `rehype-highlight`)
+- **Validated frontmatter** — a post missing `title`/`date`/`excerpt`/`tags` fails the build with a clear error
 
 ### Adding Blog Posts
 
 To add a new blog post:
 
-1. Create a new Markdown file in `content/blog/` (e.g., `my-article.md`)
-2. Use the following frontmatter format:
+1. Drop a new `.md` or `.mdx` file in `content/blog/` (e.g. `my-article.mdx`)
+2. Start it with frontmatter:
 
 ```yaml
 ---
@@ -80,13 +82,13 @@ excerpt: "A brief description of the article"
 tags: ["tag1", "tag2"]
 ---
 
-Your article content in Markdown...
+Your article content...
 ```
 
-3. Run `npm run build` to generate the updated articles list
-4. Commit and push the changes
+3. Write the body in Markdown. Fenced code blocks are syntax-highlighted — tag the language for best results (` ```glsl `, ` ```bash `, ` ```ts `, ...). With `.mdx` you can also import and embed React components directly in the post.
+4. `npm run dev` shows it live instantly (posts are read and validated at request time — no generation step). `npm run build` emits the static page. Commit and push to deploy.
 
-The articles are automatically sorted by date (newest first) and converted from Markdown to HTML during build.
+Posts are sorted by date (newest first); each becomes a static page at `/blog/<slug>/`.
 
 ### Adding Projects
 
