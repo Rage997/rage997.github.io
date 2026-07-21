@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "predev": "npm run generate-projects",
     "build": "npm run generate-projects && next build",
     "start": "next start",
     "lint": "next lint",
